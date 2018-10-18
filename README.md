@@ -6,6 +6,13 @@
 
 **注意：** 需要安装这个包才行；会把之前的`pre-commit`覆盖掉
 
+## 如何跳过
+
+正常情况下，你不应该跳过
+```bash
+git commit --no-verify
+```
+
 
 ## MIT License
 
