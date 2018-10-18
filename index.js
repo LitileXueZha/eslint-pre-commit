@@ -43,7 +43,7 @@ fs.stat(TARGET_PRE_COMMIT, (err) => {
   if (err) {
     readFile(FILE_PRE_COMMIT)
       .then(raw => writeFile(TARGET_PRE_COMMIT, raw))
-      .then(() => console.log('\\033[32m 写入 .git/hooks/pre-commit 成功！\033[0m'))
+      .then(() => console.log('\033[32m 写入 .git/hooks/pre-commit 成功！\033[0m'))
       .catch(err => console.error('\033[31m 写入 .git/hooks/pre-commit 失败：\033[0m', err));
     return;
   }
