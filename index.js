@@ -46,13 +46,13 @@ if (fs.existsSync(DIR_HOOK) === false) fs.mkdirSync(DIR_HOOK);
 // 写入 .git/pre-commit
 fs.stat(TARGET_PRE_COMMIT, (err) => {
   readFile(FILE_PRE_COMMIT)
-  .then(raw => writeFile(TARGET_PRE_COMMIT, raw))
-  .then(() => {
-    // 已存在，显示警告
-    if (err) console.log('\033[33m 警告：覆盖 .git/hooks/pre-commit 成功\033[0m');
-    else console.log('\033[32m 写入 .git/hooks/pre-commit 成功！\033[0m');
-  })
-  .catch(err => console.error('\033[31m 写入 .git/hooks/pre-commit 失败：\033[0m', err));
+    .then(raw => writeFile(TARGET_PRE_COMMIT, raw))
+    .then(() => {
+      if (err) console.log('\033[32m 写入 .git/hooks/pre-commit 成功！\033[0m');
+      // 已存在，显示警告
+      else console.log('\033[33m 警告：覆盖 .git/hooks/pre-commit 成功\033[0m');
+    })
+    .catch(err => console.error('\033[31m 写入 .git/hooks/pre-commit 失败：\033[0m', err));
 });
 
 // 写入 .eslintrc
