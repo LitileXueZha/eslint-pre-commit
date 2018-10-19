@@ -1,5 +1,5 @@
 {
-  "name": "pre-commit-eslint",
+  "name": "@shuli/pre-commit-eslint",
   "version": "1.0.0",
   "description": "在git pre-commit时创建语法校验",
   "main": "index.js",
