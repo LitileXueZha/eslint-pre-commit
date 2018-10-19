@@ -1,6 +1,6 @@
 {
   "name": "@shuli/pre-commit-eslint",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "在git pre-commit时创建语法校验",
   "main": "index.js",
   "scripts": {
@@ -27,14 +27,16 @@
     }
   ],
   "license": "MIT",
-  "devDependencies": {
-    "chai": "^4.2.0",
+  "dependencies": {
     "eslint": "^5.7.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-standard": "^4.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "nyc": "^13.1.0"
   }
