@@ -4,6 +4,7 @@
   "description": "在git pre-commit时创建语法校验",
   "main": "index.js",
   "scripts": {
+    "postinstall": "node ./index.js",
     "test": "nyc mocha"
   },
   "repository": {

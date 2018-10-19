@@ -4,7 +4,7 @@
 
 每次大家`commit`之前会`eslint`，如果不成功将无法提交
 
-**注意：** 需要安装这个包才行；会把之前的`pre-commit`覆盖掉
+> **注意：** 需要安装这个包才行；会把之前的`pre-commit`覆盖掉
 
 ## 如何跳过
 
@@ -12,6 +12,12 @@
 ```bash
 git commit --no-verify
 ```
+
+## 工具使用
+
+1. 命令行`commit`（建议）
+2. SourceTree 工具提交会失败，但是无法显示 eslint 消息
+3. Git Desktop 提交会失败，显示的消息无颜色
 
 
 ## MIT License
