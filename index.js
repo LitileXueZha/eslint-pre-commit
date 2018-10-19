@@ -6,8 +6,10 @@ const FILE_PRE_COMMIT = './pre-commit';
 const FILE_ESLINT = './.eslintrc';
 // 当前项目目录
 const DIR_PROJECT = path.resolve(__dirname, '../../..');
+// 个别情况下无 .git/hooks 目录
+const DIR_HOOK = path.resolve(DIR_PROJECT, '.git/hooks');
 // 生产的 .git/hooks/pre-commit 文件
-const TARGET_PRE_COMMIT = path.resolve(DIR_PROJECT, '.git/hooks/pre-commit');
+const TARGET_PRE_COMMIT = path.resolve(DIR_HOOK, 'pre-commit');
 // 如果没有，会生成 .eslintrc 文件
 const TARGET_ESLINT = path.resolve(DIR_PROJECT, '.eslintrc');
 
@@ -38,21 +40,19 @@ const writeFile = (target, raw, ops = {}) => new Promise((resolve, reject) => {
 });
 
 
+// 个别情况下 .git/hooks 不存在，则创建之
+if (fs.existsSync(DIR_HOOK) === false) fs.mkdirSync(DIR_HOOK);
+
 // 写入 .git/pre-commit
 fs.stat(TARGET_PRE_COMMIT, (err) => {
-  if (err) {
-    readFile(FILE_PRE_COMMIT)
-      .then(raw => writeFile(TARGET_PRE_COMMIT, raw))
-      .then(() => console.log('\033[32m 写入 .git/hooks/pre-commit 成功！\033[0m'))
-      .catch(err => console.error('\033[31m 写入 .git/hooks/pre-commit 失败：\033[0m', err));
-    return;
-  }
-
-  // 已存在，显示警告并覆盖
   readFile(FILE_PRE_COMMIT)
-    .then(raw => writeFile(TARGET_PRE_COMMIT, raw))
-    .then(() => console.warn('\033[33m 警告：覆盖 .git/hooks/pre-commit 成功\033[0m'))
-    .catch(err => console.error('\033[31m 写入 .git/hooks/pre-commit 失败：\033[0m', err));
+  .then(raw => writeFile(TARGET_PRE_COMMIT, raw))
+  .then(() => {
+    // 已存在，显示警告
+    if (err) console.log('\033[33m 警告：覆盖 .git/hooks/pre-commit 成功\033[0m');
+    else console.log('\033[32m 写入 .git/hooks/pre-commit 成功！\033[0m');
+  })
+  .catch(err => console.error('\033[31m 写入 .git/hooks/pre-commit 失败：\033[0m', err));
 });
 
 // 写入 .eslintrc
