@@ -5,7 +5,7 @@ const fs = require('fs');
 const FILE_PRE_COMMIT = './pre-commit';
 const FILE_ESLINT = './.eslintrc';
 // 当前项目目录
-const DIR_PROJECT = path.resolve(__dirname, '../..');
+const DIR_PROJECT = path.resolve(__dirname, '../../..');
 // 生产的 .git/hooks/pre-commit 文件
 const TARGET_PRE_COMMIT = path.resolve(DIR_PROJECT, '.git/hooks/pre-commit');
 // 如果没有，会生成 .eslintrc 文件
