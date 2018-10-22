@@ -1,5 +1,5 @@
 #!/bin/bash
-files=$(git diff --cached --name-only | grep '\.js$')
+files=$(git diff --cached --name-only --diff-filter=ACMR | grep '\.js$')
 
 # Prevent ESLint help message if no files matched
 if [[ $files = "" ]] ; then
@@ -12,6 +12,7 @@ for file in ${files}; do
     if [[ $? != 0 ]] ; then
         failed=1
     fi
+    git add $file
 done;
 
 if [[ $failed != 0 ]] ; then
